@@ -1,12 +1,30 @@
+// Import the React and ReactDOM libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// Create a react component
+class App extends React.Component {
+    state = { time: new Date().toLocaleTimeString() };
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+    componentDidMount() {
+        this.interval = setInterval(() => this.setState({ time: new Date().toLocaleTimeString() }), 500);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+    render() {
+        return (
+            <div>
+                <div>Current Time:</div>
+                <h3>{this.state.time}</h3>
+            </div>
+            );
+        }
+}
+
+// Take the react component and show it on the screen
+ReactDOM.render(
+    <App />,
+    document.querySelector('#root')
+)
