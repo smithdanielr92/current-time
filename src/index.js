@@ -7,7 +7,7 @@ class App extends React.Component {
     state = { time: new Date().toLocaleTimeString() };
 
     componentDidMount() {
-        this.interval = setInterval(() => this.setState({ time: new Date().toLocaleTimeString() }), 500);
+        this.interval = setInterval(() => this.setState({ time: new Date().toLocaleTimeString() }), 1000);
     }
 
     componentWillUnmount() {
